@@ -73,29 +73,65 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: 90px;
-  height: 92px;
-  width: 90px;
-  image-rendering: pixelated;
+  position: relative;
+
+  height: 127px;
+  width: 125px;
 }
 
-.box:hover {
+.image-cursor:hover {
   background-image: url('/public/select.png');
+  background-blend-mode: color;
   animation: select 0.25s steps(1) infinite alternate;
+  background-position-x: -4px;
+}
+
+.image-cursor {
+  position: absolute;
+  background-size: 135px;
+  height: 127px;
+  width: 128px;
+  image-rendering: pixelated;
+  margin-left: 12px;
 }
 
 @keyframes select {
   0% {
-    background-position-y: 184px;
+    background-position-y: 268px;
   }
   33% {
-    background-position-y: 94px;
+    background-position-y: 133px;
   }
   66% {
-    background-position-y: 2px;
+    background-position-y: -5px;
   }
 }
 
 .container {
-  display: flex;
+  background-image: url('/box.png');
+  background-size: contain;
+  image-rendering: pixelated;
+
+  padding: 30px 29px 29px 26px;
+  box-sizing: border-box;
+
+  height: 600px;
+  width: 624px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 18px 10px;
+  grid-template-areas:
+    '. . . .'
+    '. . . .'
+    '. . . .'
+    'text text text text';
+  border: 1px solid purple;
+}
+
+.text {
+  grid-area: text;
+  width: 100%;
+  border: 1px solid red;
 }

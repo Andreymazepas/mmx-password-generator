@@ -28,10 +28,53 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <div className="container">
-        <div className="box">dumb boss name 1</div>
-        <div className="box">dumb boss name 2</div>
-        <div className="box">dumb boss name 3</div>
-        <div className="box">dumb boss name 4</div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 1
+        </div>
+        <div className="box">
+          <div className="image-cursor" /> dumb boss name 2
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 3
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 4
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 1
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 2
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 3
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 4
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 1
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 2
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 3
+        </div>
+        <div className="box">
+          <div className="image-cursor" />
+          dumb boss name 4
+        </div>
       </div>
     </div>
   );
