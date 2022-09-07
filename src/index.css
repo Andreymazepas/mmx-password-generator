@@ -135,3 +135,15 @@ button:focus-visible {
   width: 100%;
   border: 1px solid red;
 }
+
+.counter {
+  margin: 14px 20px;
+  background-image: url('/numbers.png');
+  --counter-width: 28px;
+  --counter-height: 23px;
+  --scale-factor: 3;
+  background-size: calc(var(--counter-width) * 24)
+    calc(var(--counter-height) * var(--scale-factor));
+  width: calc(var(--counter-width) * var(--scale-factor));
+  height: calc(var(--counter-height) * var(--scale-factor));
+}

@@ -2,78 +2,94 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import './App.css';
 
+const Counter = ({ num }: { num: number }) => {
+  const [value, setValue] = useState(num);
+
+  const handleClick = () => {
+    if (value >= 8) {
+      setValue(1);
+    } else {
+      setValue((value) => value + 1);
+    }
+  };
+
+  return (
+    <div
+      className="counter"
+      style={{
+        backgroundPositionX: `calc(-28 * 3 * ${value - 1}px) `,
+        color: 'pink',
+      }}
+      onClick={handleClick}
+    ></div>
+  );
+};
+
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       <div className="container">
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 1
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" /> dumb boss name 2
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>{' '}
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 3
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 4
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 1
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 2
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 3
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 4
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 1
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 2
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 3
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
         <div className="box">
-          <div className="image-cursor" />
-          dumb boss name 4
+          <div className="image-cursor">
+            <Counter num={1} />
+          </div>
         </div>
       </div>
     </div>
