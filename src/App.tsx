@@ -3,93 +3,65 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 
 const Counter = ({ num }: { num: number }) => {
-  const [value, setValue] = useState(num);
-
-  const handleClick = () => {
-    if (value >= 8) {
-      setValue(1);
-    } else {
-      setValue((value) => value + 1);
-    }
-  };
-
   return (
     <div
       className="counter"
       style={{
-        backgroundPositionX: `calc(-28 * 3 * ${value - 1}px) `,
+        backgroundPositionX: `calc(-28 * 3 * ${num - 1}px) `,
         color: 'pink',
       }}
-      onClick={handleClick}
     ></div>
   );
 };
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [password, setPassword] = useState([
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  ]);
+
+  const handleClick = (index: number) => {
+    setPassword(
+      password.map((el, i) => {
+        if (index === i) {
+          return el >= 8 ? 1 : el + 1;
+        }
+        return el;
+      })
+    );
+  };
 
   return (
     <div className="App">
       <div className="container">
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
+        {password.map((num, index) => (
+          <div className="box" key={index}>
+            <div className="image-cursor" onClick={() => handleClick(index)}>
+              <Counter num={num} />
+            </div>
           </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>{' '}
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
-        </div>
-        <div className="box">
-          <div className="image-cursor">
-            <Counter num={1} />
-          </div>
+        ))}
+        <div className="text">
+          <button
+            onClick={() => {
+              setPassword(password.map((el) => 1));
+            }}
+          >
+            reset
+          </button>
+          <button
+            onClick={() => {
+              console.log(password);
+            }}
+          >
+            debug
+          </button>
+          <button
+            onClick={() => {
+              setPassword(password.map((el) => Math.floor(Math.random() * 8)));
+            }}
+          >
+            random
+          </button>
         </div>
       </div>
     </div>
