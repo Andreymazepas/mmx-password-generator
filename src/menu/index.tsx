@@ -3,6 +3,7 @@ import Weapon from './Weapon';
 import Heart from './Heart';
 import HeartBoss from './BossTitle';
 import BossTitle from './BossTitle';
+import SubTank from './SubTank';
 
 interface MenuProps {
     onChange: (state: MMXState) => void;
@@ -40,7 +41,7 @@ const hearts: IHearts[] = [
     'heart_eagle'
 ]
 
-const subs = [
+const subs: ISubs[] = [
     'sub_armadillo',
     'sub_flame',
     'sub_eagle',
@@ -126,6 +127,11 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
             <div className="Weapons">
                 {weapons.map((weapon) => (
                     <Weapon key={weapon} id={weapon} onChange={handleChange} onMouseEnter={() => handleWeaponMouseEnter(weapon)} onMouseLeave={handleWeaponMouseLeave} />
+                ))}
+            </div>
+            <div className="Subs">
+                {subs.map((sub) => (
+                    <SubTank key={sub} id={sub} onChange={handleChange} onMouseEnter={() => handleItemMouseEnter(sub)} onMouseLeave={handleItemMouseLeave} />
                 ))}
             </div>
             <div className="Hearts">

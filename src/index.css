@@ -176,6 +176,7 @@ h1 {
   image-rendering: pixelated;
   background-repeat: no-repeat;
 
+  animation: Heart 0.4s steps(1);
   background-position-x: -51px;
 
   width: 51px;
@@ -183,7 +184,8 @@ h1 {
   cursor: pointer;
 }
 
-.inactive {
+.Heart-inactive {
+  animation: 0;
   background-position-x: 0px;
 }
 
@@ -208,10 +210,6 @@ h1 {
   }
 }
 
-.Heart:hover:not(.inactive) {
-  animation: Heart 0.8s steps(1) infinite;
-}
-
 .BossTitle {
   background-image: url('/bosses.png');
   background-size: 100% 800%;
@@ -224,4 +222,45 @@ h1 {
   position: absolute;
   top: 520px;
   left: 230px;
+}
+
+.Subs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+
+  width: 130px;
+  gap: 16px;
+
+  top: 400px;
+  left: 45px;
+}
+
+.SubTank {
+  background-image: url('/ST.png');
+  background-size: 1600% 100%;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+
+  animation: Sub 0.4s steps(14);
+  background-position-x: -810px;
+
+  width: 54px;
+  height: 54px;
+  cursor: pointer;
+}
+
+@keyframes Sub {
+  0% {
+    background-position-x: -54px;
+  }
+  100% {
+    background-position-x: -810px;
+  }
+}
+
+.ST-inactive {
+  animation: 0;
+  background-position-x: 0px;
 }
