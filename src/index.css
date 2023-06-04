@@ -282,3 +282,21 @@ h1 {
   height: 102px;
   width: 90px;
 }
+
+.X-large-root {
+  position: absolute;
+
+  height: 546px;
+  width: 336px;
+  top: 40px;
+  left: 670px;
+}
+
+.X-large-base {
+  background-image: url('/XLarge.png');
+  background-size: 900% 224%;
+  image-rendering: pixelated;
+
+  height: 546px;
+  width: 336px;
+}

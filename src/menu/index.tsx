@@ -5,6 +5,7 @@ import HeartBoss from './BossTitle';
 import BossTitle from './BossTitle';
 import SubTank from './SubTank';
 import X from './X';
+import XLarge from './XLarge';
 
 interface MenuProps {
     onChange: (state: MMXState) => void;
@@ -142,6 +143,7 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
             </div>
             <BossTitle id={hoverItem} />
             <X weapon={hoverWeapon} head={state.head} arm={state.arm} body={state.body} leg={state.leg} />
+            <XLarge weapon={hoverWeapon} head={state.head} arm={state.arm} body={state.body} leg={state.leg} />
             <form onSubmit={handleSubmit}>
                 {/* {checkboxOptions.map((option) => (
                     <div className="checkbox" key={option}>
