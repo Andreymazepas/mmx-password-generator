@@ -4,6 +4,7 @@ import Heart from './Heart';
 import HeartBoss from './BossTitle';
 import BossTitle from './BossTitle';
 import SubTank from './SubTank';
+import X from './X';
 
 interface MenuProps {
     onChange: (state: MMXState) => void;
@@ -92,7 +93,7 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
         }
     );
 
-    const [hoverWeapon, setHoverWeapon] = useState<string | null>(null);
+    const [hoverWeapon, setHoverWeapon] = useState<IWeapons | null>(null);
     const [hoverItem, setHoverItem] = useState<IHearts | ISubs | null>(null);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -106,7 +107,7 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
         onChange({ ...state, [option]: value });
     };
 
-    const handleWeaponMouseEnter = (weapon: string) => {
+    const handleWeaponMouseEnter = (weapon: IWeapons) => {
         setHoverWeapon(weapon);
     };
 
@@ -140,6 +141,7 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
                 ))}
             </div>
             <BossTitle id={hoverItem} />
+            <X weapon={hoverWeapon} head={state.head} arm={state.arm} body={state.body} leg={state.leg} />
             <form onSubmit={handleSubmit}>
                 {/* {checkboxOptions.map((option) => (
                     <div className="checkbox" key={option}>

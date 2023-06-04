@@ -264,3 +264,21 @@ h1 {
   animation: 0;
   background-position-x: 0px;
 }
+
+.X-root {
+  position: absolute;
+
+  height: 102px;
+  width: 90px;
+  top: 430px;
+  left: 525px;
+}
+
+.X-base {
+  background-image: url('/X.png');
+  background-size: 1900% 600%;
+  image-rendering: pixelated;
+
+  height: 102px;
+  width: 90px;
+}
