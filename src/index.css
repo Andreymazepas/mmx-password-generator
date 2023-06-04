@@ -274,6 +274,17 @@ h1 {
   left: 525px;
 }
 
+.X {
+  background-image: url('/X.png');
+  background-size: 1900% 600%;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+
+  height: 102px;
+  width: 90px;
+  position: absolute;
+}
+
 .X-base {
   background-image: url('/X.png');
   background-size: 1900% 600%;
@@ -283,13 +294,40 @@ h1 {
   width: 90px;
 }
 
+.X-head {
+  background-position-y: -140px;
+}
+
+.X-body {
+  background-position-y: -260px;
+}
+
+.X-arm {
+  background-position-y: -393px;
+}
+
+.X-foot {
+  background-position-y: -520px;
+}
+
 .X-large-root {
   position: absolute;
 
-  height: 546px;
+  height: 543px;
   width: 336px;
   top: 40px;
   left: 670px;
+}
+
+.X-large {
+  background-image: url('/XLarge.png');
+  background-size: 900% 224%;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  position: absolute;
+
+  height: 543px;
+  width: 336px;
 }
 
 .X-large-base {
@@ -297,6 +335,69 @@ h1 {
   background-size: 900% 224%;
   image-rendering: pixelated;
 
-  height: 546px;
+  height: 543px;
   width: 336px;
+}
+
+.X-large-head {
+  background-position-y: -543px;
+  background-size: 900% 1038.38461538%;
+  height: 117px;
+}
+
+.X-large-body {
+  background-position-y: -663px;
+  top: 120px;
+  background-size: 900% 686.44067796%;
+  height: 177px;
+}
+
+.X-large-arm {
+  background-position-y: -1092px;
+  top: 188px;
+  background-size: 900% 987.804878048%;
+  height: 123px;
+}
+
+.X-large-foot {
+  background-position-y: -870px;
+  top: 327px;
+  background-size: 900% 562.5%;
+  height: 216px;
+}
+
+.Parts-root {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 40px 0;
+  top: 180px;
+  left: 1000px;
+}
+
+.Parts-menu {
+  background-image: url('/armortxt.png');
+  background-size: 200% 400%;
+  image-rendering: pixelated;
+  background-position-x: -96px;
+
+  height: 24px;
+  width: 96px;
+  cursor: pointer;
+}
+
+.Parts-arm {
+  background-position-y: -24px;
+}
+
+.Parts-body {
+  background-position-y: -48px;
+}
+
+.Parts-leg {
+  background-position-y: -72px;
+}
+
+.Parts-active {
+  background-position-x: 0px;
 }

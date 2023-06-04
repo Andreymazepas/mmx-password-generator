@@ -25,12 +25,12 @@ const XLarge: React.FC<XProps> = ({ weapon, head, arm, body, leg }) => {
     } : {};
 
     return (
-        <div className="X-large-root" style={style}>
-            <div className="X-large-base" style={style} />
-            {head && <div className="X-large-head" style={style} />}
-            {arm && <div className="X-large-arm" style={style} />}
-            {body && <div className="X-large-body" style={style} />}
-            {leg && <div className="X-large-leg" style={style} />}
+        <div className="X-large X-large-root" style={style}>
+            <div className="X-large X-large-base" style={style} />
+            {head && <div className="X-large X-large-head" style={style} />}
+            {arm && <div className="X-large X-large-arm" style={style} />}
+            {body && <div className="X-large X-large-body" style={style} />}
+            {leg && <div className="X-large X-large-foot" style={style} />}
         </div>
     );
 }

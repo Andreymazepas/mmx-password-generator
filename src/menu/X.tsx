@@ -26,11 +26,11 @@ const X: React.FC<XProps> = ({ weapon, head, arm, body, leg }) => {
 
     return (
         <div className="X-root" style={style}>
-            <div className="X-base" style={style} />
-            {head && <div className="X-head" style={style} />}
-            {arm && <div className="X-arm" style={style} />}
-            {body && <div className="X-body" style={style} />}
-            {leg && <div className="X-leg" style={style} />}
+            <div className="X X-base" style={style} />
+            {head && <div className="X X-head" style={style} />}
+            {arm && <div className="X X-arm" style={style} />}
+            {body && <div className="X X-body" style={style} />}
+            {leg && <div className="X X-foot" style={style} />}
         </div>
     );
 }
