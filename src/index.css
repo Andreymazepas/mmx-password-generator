@@ -156,3 +156,72 @@ h1 {
 .Weapon:hover {
   background-position-x: 0px !important;
 }
+
+.Hearts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+
+  width: 240px;
+  gap: 8px;
+
+  top: 400px;
+  left: 220px;
+}
+
+.Heart {
+  background-image: url('/HT.png');
+  background-size: 500% 100%;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+
+  background-position-x: -51px;
+
+  width: 51px;
+  height: 51px;
+  cursor: pointer;
+}
+
+.inactive {
+  background-position-x: 0px;
+}
+
+@keyframes Heart {
+  0% {
+    background-position-x: -51px;
+  }
+  25% {
+    background-position-x: -102px;
+    background-position-y: -2px;
+  }
+  50% {
+    background-position-x: -153px;
+    background-position-y: -4px;
+  }
+  75% {
+    background-position-x: -204px;
+    background-position-y: -2px;
+  }
+  100% {
+    background-position-x: -255px;
+  }
+}
+
+.Heart:hover:not(.inactive) {
+  animation: Heart 0.8s steps(1) infinite;
+}
+
+.BossTitle {
+  background-image: url('/bosses.png');
+  background-size: 100% 800%;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+
+  width: 207px;
+  height: 48px;
+
+  position: absolute;
+  top: 520px;
+  left: 230px;
+}

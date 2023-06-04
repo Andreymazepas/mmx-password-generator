@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Weapon from './Weapon';
+import Heart from './Heart';
+import HeartBoss from './BossTitle';
+import BossTitle from './BossTitle';
 
 interface MenuProps {
     onChange: (state: MMXState) => void;
@@ -11,6 +14,9 @@ interface MMXState {
 }
 
 type IWeapons = 'armadillo' | 'boomer' | 'chill' | 'flame' | 'octopus' | 'spark' | 'sting' | 'eagle';
+type IHearts = 'heart_armadillo' | 'heart_boomer' | 'heart_chill' | 'heart_flame' | 'heart_octopus' | 'heart_spark' | 'heart_sting' | 'heart_eagle';
+type ISubs = 'sub_armadillo' | 'sub_flame' | 'sub_eagle' | 'sub_spark';
+type IParts = 'leg' | 'head' | 'arm' | 'body';
 
 const weapons: IWeapons[] = [
     'armadillo',
@@ -23,7 +29,7 @@ const weapons: IWeapons[] = [
     'eagle'
 ];
 
-const hearts = [
+const hearts: IHearts[] = [
     'heart_armadillo',
     'heart_boomer',
     'heart_chill',
@@ -37,7 +43,8 @@ const hearts = [
 const subs = [
     'sub_armadillo',
     'sub_flame',
-    'sub_eagle'
+    'sub_eagle',
+    'sub_spark'
 ]
 
 const parts = [
@@ -85,6 +92,7 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
     );
 
     const [hoverWeapon, setHoverWeapon] = useState<string | null>(null);
+    const [hoverItem, setHoverItem] = useState<IHearts | ISubs | null>(null);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -105,6 +113,14 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
         setHoverWeapon(null);
     };
 
+    const handleItemMouseEnter = (item: IHearts | ISubs) => {
+        setHoverItem(item);
+    };
+
+    const handleItemMouseLeave = () => {
+        setHoverItem(null);
+    };
+
     return (
         <div className="Menu">
             <div className="Weapons">
@@ -112,6 +128,12 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
                     <Weapon key={weapon} id={weapon} onChange={handleChange} onMouseEnter={() => handleWeaponMouseEnter(weapon)} onMouseLeave={handleWeaponMouseLeave} />
                 ))}
             </div>
+            <div className="Hearts">
+                {hearts.map((heart) => (
+                    <Heart key={heart} id={heart} onChange={handleChange} onMouseEnter={() => handleItemMouseEnter(heart)} onMouseLeave={handleItemMouseLeave} />
+                ))}
+            </div>
+            <BossTitle id={hoverItem} />
             <form onSubmit={handleSubmit}>
                 {/* {checkboxOptions.map((option) => (
                     <div className="checkbox" key={option}>
