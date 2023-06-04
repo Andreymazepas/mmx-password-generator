@@ -287,27 +287,50 @@ h1 {
 
 .X-base {
   background-image: url('/X.png');
-  background-size: 1900% 600%;
+  background-size: 1900% 664.7058%;
   image-rendering: pixelated;
 
   height: 102px;
   width: 90px;
 }
 
+@keyframes X {
+  0% {
+    background-position-x: -810px;
+  }
+  100% {
+    background-position-x: -1710px;
+  }
+}
+
 .X-head {
   background-position-y: -140px;
+  animation: X 0.8s steps(10);
+  height: 118px;
+  top: -23px;
 }
 
 .X-body {
   background-position-y: -260px;
+  animation: X 0.8s steps(10);
+  height: 118px;
+  top: -47px;
 }
 
 .X-arm {
   background-position-y: -393px;
+  animation: X 0.8s steps(10);
+  height: 110px;
+  top: -29px;
+  z-index: 1;
 }
 
 .X-foot {
-  background-position-y: -520px;
+  background-position-y: -537px;
+  background-size: 1900% 480.851%;
+  animation: X 0.8s steps(10);
+  height: 141px;
+  top: -39px;
 }
 
 .X-large-root {
