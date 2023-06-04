@@ -1,10 +1,16 @@
 import Counter from "./Counter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const PasswordScreen = () => {
-    const [password, setPassword] = useState([
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    ]);
+interface PasswordScreenProps {
+    receivedPassword?: number[];
+}
+
+const PasswordScreen = ({ receivedPassword }: PasswordScreenProps) => {
+    const [password, setPassword] = useState(receivedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+
+    useEffect(() => {
+        setPassword(receivedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+    }, [receivedPassword]);
 
     const handleClick = (index: number) => {
         setPassword(
