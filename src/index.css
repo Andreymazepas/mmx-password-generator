@@ -120,11 +120,39 @@ h1 {
 }
 
 .Menu {
+  background-image: url('/bg1.png');
+  background-size: contain;
+  image-rendering: pixelated;
+
+  width: 1152px;
+  height: 624px;
+  position: relative;
+}
+
+.Weapons {
   display: flex;
-  text-align: left;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  background-color: white;
-  padding: 20px;
+  flex-wrap: wrap;
+  position: absolute;
+
+  height: 240px;
+  gap: 0 48px;
+
+  top: 96px;
+  left: 48px;
+}
+
+.Weapon {
+  background-image: url('/powers.png');
+  background-size: 200% 1000%;
+  image-rendering: pixelated;
+
+  width: 264px;
+  height: 60px;
+
+  cursor: pointer;
+}
+
+.Weapon:hover {
+  background-position-x: 0px !important;
 }
