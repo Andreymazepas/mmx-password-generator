@@ -45,3 +45,11 @@ export type IPassword = [
   number,
   number
 ];
+
+export type IPasswordSet = Array<Array<Array<number>>>;
+
+export interface IPasswordFactors {
+  x: ISubs | IHearts | IWeapons | IParts;
+  y: ISubs | IHearts | IWeapons | IParts;
+  main: Array<ISubs | IHearts | IWeapons | IParts>;
+}

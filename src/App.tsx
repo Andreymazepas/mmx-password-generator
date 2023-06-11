@@ -19,6 +19,7 @@ function App() {
     const password = encode(state);
     setInvalidPassword(false);
     setEncodedPassword(password as IPassword);
+    console.log("New password: ", password)
   }, [state]);
 
   useEffect(() => {
