@@ -22,9 +22,10 @@ const getNumber = (
   return randomSet[index][pairToUse][indexToUse];
 };
 
-export const encode = (input: IState) => {
+export const encode = (input: IState, setNumber?: number) => {
   const randomSetNumber = Math.floor(Math.random() * 8) + 1;
-  const randomSet = allPasswordSets[randomSetNumber - 1];
+  const randomSet =
+    allPasswordSets[setNumber ? setNumber : randomSetNumber - 1];
 
   // flatten the object to a single level deep
   const flattenedInput = {
