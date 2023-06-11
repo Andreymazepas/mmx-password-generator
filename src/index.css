@@ -48,7 +48,7 @@ h1 {
 }
 
 .image-cursor:hover {
-  background-image: url('/public/select.png');
+  background-image: url('/select.png');
   background-blend-mode: color;
   animation: select 0.25s steps(1) infinite alternate;
   background-position-x: -4px;
