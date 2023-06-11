@@ -102,9 +102,9 @@ h1 {
   grid-area: text;
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 25px;
+  justify-content: start;
+  align-items: start;
+  margin: 25px;
   height: 50px;
 }
 
@@ -428,4 +428,12 @@ h1 {
 
 .Parts-active {
   background-position-x: 0px;
+}
+
+.Invalid {
+  background-image: url('/invalid.png');
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+  width: 288px;
+  height: 24px;
 }

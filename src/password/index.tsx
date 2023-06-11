@@ -51,28 +51,7 @@ const PasswordScreen = ({ encodedPassword, onChange, invalidPassword }: Password
                 </div>
             ))}
             <div className="text">
-                <span>
-                    <h1>
-                        {invalidPassword && <p>Invalid password!</p>}
-                    </h1>
-                </span>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
-                    <button
-                        onClick={reset}
-                    >
-                        reset
-                    </button>
-                    <button
-                        onClick={debug}
-                    >
-                        debug
-                    </button>
-                </div>
-
+                {invalidPassword && <div className="Invalid" />}
             </div>
         </div>
     );

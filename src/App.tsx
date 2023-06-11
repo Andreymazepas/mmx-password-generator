@@ -17,17 +17,14 @@ function App() {
 
   useEffect(() => {
     if (JSON.stringify(stateSetFromPassword) !== JSON.stringify(state)) {
-      console.log("Generating new password")
       const password = encode(state);
       setInvalidPassword(false);
       setStateSetFromPassword(null);
       setEncodedPassword(password as IPassword);
-      console.log("New password: ", password)
     }
   }, [state]);
 
   useEffect(() => {
-    console.log("Decoding password")
     const decoded = decode(passwordToDecode);
     if (decoded === 'Invalid password') {
       setInvalidPassword(true);
