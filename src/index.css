@@ -437,3 +437,12 @@ h1 {
   width: 288px;
   height: 24px;
 }
+
+.madeby {
+  color: rgba(255, 255, 255, 0.87);
+}
+.madeby > a {
+  text-decoration: blanchedalmond;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+}

@@ -10,9 +10,6 @@ export const findSet = (input: IPassword) => {
     const digit = input[i];
     for (let j = 0; j < 8; j++) {
       if (validSets[j] && !allDigitSets[j][i].includes(digit)) {
-        //console.log(`Digit ${digit} is not valid for set ${j + 1}`);
-        //console.log(`Removing set ${j + 1}`);
-        //console.log(allDigitSets[j][i]);
         validSets[j] = 0;
       }
     }

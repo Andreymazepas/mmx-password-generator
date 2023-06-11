@@ -10,7 +10,7 @@ import { encode } from './cryptography/Encode';
 function App() {
   const [state, setState] = useState<IState>(initialState);
   const [encodedPassword, setEncodedPassword] = useState<IPassword | null>(null);
-  const [passwordToDecode, setPasswordToDecode] = useState<IPassword>([1, 3, 6, 7, 4, 2, 5, 7, 8, 6, 4, 6]);
+  const [passwordToDecode, setPasswordToDecode] = useState<IPassword>([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
   const [invalidPassword, setInvalidPassword] = useState<boolean>(false);
   const [stateSetFromPassword, setStateSetFromPassword] = useState<IState | null>(initialState);
 
@@ -50,6 +50,7 @@ function App() {
     <div className="App">
       <Menu onChange={handleMenuChange} state={state} />
       <PasswordScreen onChange={handlePasswordChange} encodedPassword={encodedPassword} invalidPassword={invalidPassword} />
+      <div className="madeby">Made by <a href="https://mazepas.dev">Andrey Mazépas</a></div>
     </div>
   );
 }
