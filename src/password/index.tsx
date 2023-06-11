@@ -1,27 +1,45 @@
+import { IPassword } from "../common/types";
 import Counter from "./Counter";
 import { useEffect, useState } from "react";
 
 interface PasswordScreenProps {
-    receivedPassword?: number[];
+    encodedPassword?: IPassword | null;
+    onChange: (password: IPassword) => void;
+    invalidPassword?: boolean;
 }
 
-const PasswordScreen = ({ receivedPassword }: PasswordScreenProps) => {
-    const [password, setPassword] = useState(receivedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+const PasswordScreen = ({ encodedPassword, onChange, invalidPassword }: PasswordScreenProps) => {
+    const [password, setPassword] = useState<IPassword>(encodedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
 
     useEffect(() => {
-        setPassword(receivedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-    }, [receivedPassword]);
+        setPassword(encodedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+    }, [encodedPassword]);
 
     const handleClick = (index: number) => {
+        const newPass = password.map((el: number, i: number) => {
+            if (index === i) {
+                return el >= 8 ? 1 : el + 1;
+            }
+            return el;
+        });
         setPassword(
-            password.map((el: number, i: number) => {
-                if (index === i) {
-                    return el >= 8 ? 1 : el + 1;
-                }
-                return el;
-            })
+            newPass as IPassword
         );
+        onChange(newPass as IPassword);
     };
+
+    const reset = () => {
+        setPassword(encodedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+        onChange(encodedPassword || [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+    };
+
+    const debug = () => {
+        console.log({
+            password,
+            encodedPassword,
+            invalidPassword
+        })
+    }
 
     return (
         <div className="container">
@@ -33,27 +51,28 @@ const PasswordScreen = ({ receivedPassword }: PasswordScreenProps) => {
                 </div>
             ))}
             <div className="text">
-                <button
-                    onClick={() => {
-                        setPassword(password.map((el) => 1));
-                    }}
-                >
-                    reset
-                </button>
-                <button
-                    onClick={() => {
-                        console.log(password);
-                    }}
-                >
-                    debug
-                </button>
-                <button
-                    onClick={() => {
-                        setPassword(password.map((el) => Math.floor(Math.random() * 8)));
-                    }}
-                >
-                    random
-                </button>
+                <span>
+                    <h1>
+                        {invalidPassword && <p>Invalid password!</p>}
+                    </h1>
+                </span>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                }}>
+                    <button
+                        onClick={reset}
+                    >
+                        reset
+                    </button>
+                    <button
+                        onClick={debug}
+                    >
+                        debug
+                    </button>
+                </div>
+
             </div>
         </div>
     );

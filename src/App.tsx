@@ -2,52 +2,29 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Menu from './menu';
 import PasswordScreen from './password';
-import { decode } from './decoder/Decode';
-
-interface MMXState {
-  [key: string]: boolean;
-}
+import { decode } from './cryptography/Decode';
+import { IPassword, IState } from './common/types';
+import { initialState } from './common/common';
 
 function App() {
-  const [state, setState] = useState<MMXState>({
-    armadillo: false,
-    boomer: false,
-    chill: false,
-    flame: false,
-    octopus: false,
-    spark: false,
-    sting: false,
-    eagle: false,
-    heart_armadillo: false,
-    heart_boomer: false,
-    heart_chill: false,
-    heart_flame: false,
-    heart_octopus: false,
-    heart_spark: false,
-    heart_sting: false,
-    heart_eagle: false,
-    sub_armadillo: false,
-    sub_flame: false,
-    sub_eagle: false,
-    sub_spark: false,
-    leg: false,
-    head: false,
-    arm: false,
-    body: false
-  });
-  const [receivedPassword, setReceivedPassword] = useState<number[]>([]);
+  const [state, setState] = useState<IState>(initialState);
+  const [encodedPassword, setEncodedPassword] = useState<IPassword | null>(null);
+  const [passwordToDecode, setPasswordToDecode] = useState<IPassword>([1, 3, 6, 7, 4, 2, 5, 7, 8, 6, 4, 6]);
 
 
   useEffect(() => {
-    // Generate a new password whenever the 'state' variable changes
     console.log("Generating new password")
     const password = generatePassword(state);
-    setReceivedPassword(password);
+    setEncodedPassword(password as IPassword);
   }, [state]);
 
+  useEffect(() => {
+    console.log("Decoding password")
+    decode(passwordToDecode);
+  }, [passwordToDecode]);
 
-  // generate array of 12 random numbers between 1 and 8
-  const generatePassword = (state: MMXState) => {
+
+  const generatePassword = (state: IState) => {
     const password = [];
     for (let i = 0; i < 12; i++) {
       password.push(Math.floor(Math.random() * 8) + 1);
@@ -55,18 +32,18 @@ function App() {
     return password;
   }
 
-  const handleMenuChange = (state: MMXState) => {
+  const handleMenuChange = (state: IState) => {
     setState(state);
-    const test = 136742578646
+  }
 
-
-    decode(test.toString().split('').map(Number));
+  const handlePasswordChange = (password: IPassword) => {
+    setPasswordToDecode(password);
   }
 
   return (
     <div className="App">
-      <Menu onChange={handleMenuChange} />
-      <PasswordScreen receivedPassword={receivedPassword} />
+      <Menu onChange={handleMenuChange} state={state} />
+      <PasswordScreen onChange={handlePasswordChange} encodedPassword={encodedPassword} />
     </div>
   );
 }

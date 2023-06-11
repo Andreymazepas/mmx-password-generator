@@ -1,34 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { IParts, PartMap } from '../common/types';
 
 interface MenuProps {
     onChange: (option: string, value: boolean) => void;
-
+    parts: PartMap;
 };
 
-type IParts = 'leg' | 'head' | 'arm' | 'body';
 
-const PartsMenu: React.FC<MenuProps> = ({ onChange }) => {
-    const [parts, setParts] = useState({
-        leg: false,
-        head: false,
-        arm: false,
-        body: false
-    })
+const PartsMenu: React.FC<MenuProps> = ({ onChange, parts }) => {
 
     const handleClick = (id: IParts) => {
         onChange(id, !parts[id]);
-        setParts({ ...parts, [id]: !parts[id] });
     };
+
+    const { head, arm, body, foot } = parts;
 
     return (
         <div className="Parts-root" >
-            <div className={`Parts-menu Parts-head ${parts.head ? 'Parts-active' : ''}`} onClick={() => handleClick("head")} />
-            <div className={`Parts-menu Parts-arm ${parts.arm ? 'Parts-active' : ''}`}
+            <div className={`Parts-menu Parts-head ${head ? 'Parts-active' : ''}`} onClick={() => handleClick("head")} />
+            <div className={`Parts-menu Parts-arm ${arm ? 'Parts-active' : ''}`}
                 onClick={() => handleClick("arm")} />
-            <div className={`Parts-menu Parts-body ${parts.body ? 'Parts-active' : ''}`}
+            <div className={`Parts-menu Parts-body ${body ? 'Parts-active' : ''}`}
                 onClick={() => handleClick("body")} />
-            <div className={`Parts-menu Parts-leg ${parts.leg ? 'Parts-active' : ''}`}
-                onClick={() => handleClick("leg")} />
+            <div className={`Parts-menu Parts-leg ${foot ? 'Parts-active' : ''}`}
+                onClick={() => handleClick("foot")} />
         </div>
 
     );

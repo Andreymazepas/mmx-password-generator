@@ -1,11 +1,9 @@
 import React from 'react';
+import { IWeapons, PartMap } from '../common/types';
 
 interface XProps {
-    weapon: "armadillo" | "boomer" | "chill" | "flame" | "octopus" | "spark" | "sting" | "eagle" | null;
-    head: boolean;
-    arm: boolean;
-    body: boolean;
-    leg: boolean;
+    weapon: IWeapons | null;
+    parts: PartMap;
 };
 
 const offset = {
@@ -19,10 +17,11 @@ const offset = {
     eagle: 896
 }
 
-const XLarge: React.FC<XProps> = ({ weapon, head, arm, body, leg }) => {
+const XLarge: React.FC<XProps> = ({ weapon, parts }) => {
     const style = weapon ? {
         backgroundPositionX: `calc(-${offset[weapon]}px * 3)`,
     } : {};
+    const { head, arm, body, foot } = parts;
 
     return (
         <div className="X-large X-large-root" style={style}>
@@ -30,7 +29,7 @@ const XLarge: React.FC<XProps> = ({ weapon, head, arm, body, leg }) => {
             {head && <div className="X-large X-large-head" style={style} />}
             {arm && <div className="X-large X-large-arm" style={style} />}
             {body && <div className="X-large X-large-body" style={style} />}
-            {leg && <div className="X-large X-large-foot" style={style} />}
+            {foot && <div className="X-large X-large-foot" style={style} />}
         </div>
     );
 }

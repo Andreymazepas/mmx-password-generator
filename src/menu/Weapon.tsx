@@ -1,10 +1,12 @@
 import React, { MouseEvent, useState } from 'react';
+import { IWeapons } from '../common/types';
 
 interface MenuProps {
-    onChange: (option: string, value: boolean) => void;
-    id: 'armadillo' | 'boomer' | 'chill' | 'flame' | 'octopus' | 'spark' | 'sting' | 'eagle';
+    onChange: (option: IWeapons, value: boolean) => void;
+    id: IWeapons;
     onMouseEnter?: (event: MouseEvent<HTMLDivElement>) => void;
     onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void;
+    active?: boolean;
 };
 
 const offset = {
@@ -19,18 +21,16 @@ const offset = {
 };
 
 const Weapon: React.FC<MenuProps> = ({ onChange, id, onMouseEnter,
-    onMouseLeave }) => {
-    const [state, setState] = useState<boolean>(false);
+    onMouseLeave, active }) => {
 
     const handleClick = () => {
-        onChange(id, !state);
-        setState(!state);
+        onChange(id, !active);
     };
 
-    const className = `Weapon ${!state ? 'inactive' : ''} ${id}`;
+    const className = `Weapon ${!active ? 'inactive' : ''} ${id}`;
 
     const style = {
-        backgroundPositionX: !state ? '264px' : '0px',
+        backgroundPositionX: !active ? '264px' : '0px',
         backgroundPositionY: `calc(-${offset[id]}px * 3)`,
     }
 

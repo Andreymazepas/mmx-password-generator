@@ -1,22 +1,22 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent } from 'react';
+import { IHearts } from '../common/types';
 
 interface MenuProps {
-    onChange: (option: string, value: boolean) => void;
-    id: 'heart_armadillo' | 'heart_boomer' | 'heart_chill' | 'heart_flame' | 'heart_octopus' | 'heart_spark' | 'heart_sting' | 'heart_eagle';
+    onChange: (option: IHearts, value: boolean) => void;
+    id: IHearts;
     onMouseEnter?: (event: MouseEvent<HTMLDivElement>) => void;
     onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void;
+    active?: boolean;
 };
 
 const Heart: React.FC<MenuProps> = ({ onChange, id, onMouseEnter,
-    onMouseLeave }) => {
-    const [state, setState] = useState<boolean>(false);
+    onMouseLeave, active }) => {
 
     const handleClick = () => {
-        onChange(id, !state);
-        setState(!state);
+        onChange(id, !active);
     };
 
-    const className = `Heart ${!state ? 'Heart-inactive' : ''} ${id}`;
+    const className = `Heart ${!active ? 'Heart-inactive' : ''} ${id}`;
 
     return (
         <div className={className} onClick={handleClick} onMouseEnter={onMouseEnter}

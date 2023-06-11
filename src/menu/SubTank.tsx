@@ -1,22 +1,23 @@
 import React, { MouseEvent, useState } from 'react';
+import { ISubs } from '../common/types';
 
 interface STProps {
-    onChange: (option: string, value: boolean) => void;
-    id: 'sub_armadillo' | 'sub_flame' | 'sub_eagle' | 'sub_spark';
+    onChange: (option: ISubs, value: boolean) => void;
+    id: ISubs;
     onMouseEnter?: (event: MouseEvent<HTMLDivElement>) => void;
     onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void;
+    active?: boolean;
 };
 
 const SubTank: React.FC<STProps> = ({ onChange, id, onMouseEnter,
-    onMouseLeave }) => {
-    const [state, setState] = useState<boolean>(false);
+    onMouseLeave, active }) => {
+
 
     const handleClick = () => {
-        onChange(id, !state);
-        setState(!state);
+        onChange(id, !active);
     };
 
-    const className = `SubTank ${!state ? 'ST-inactive' : ''} ${id}`;
+    const className = `SubTank ${!active ? 'ST-inactive' : ''} ${id}`;
 
     return (
         <div className={className} onClick={handleClick} onMouseEnter={onMouseEnter}

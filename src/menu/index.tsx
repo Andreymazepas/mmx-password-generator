@@ -1,112 +1,42 @@
 import React, { useState } from 'react';
 import Weapon from './Weapon';
 import Heart from './Heart';
-import HeartBoss from './BossTitle';
 import BossTitle from './BossTitle';
 import SubTank from './SubTank';
 import X from './X';
 import XLarge from './XLarge';
 import PartsMenu from './PartsMenu';
+import { IHearts, IState, ISubs, IWeapons } from '../common/types';
+import { hearts, subs, weapons } from '../common/common';
 
 interface MenuProps {
-    onChange: (state: MMXState) => void;
-    initial?: MMXState;
+    onChange: (state: IState) => void;
+    state: IState;
 }
 
-interface MMXState {
-    [key: string]: boolean;
-}
 
-type IWeapons = 'armadillo' | 'boomer' | 'chill' | 'flame' | 'octopus' | 'spark' | 'sting' | 'eagle';
-type IHearts = 'heart_armadillo' | 'heart_boomer' | 'heart_chill' | 'heart_flame' | 'heart_octopus' | 'heart_spark' | 'heart_sting' | 'heart_eagle';
-type ISubs = 'sub_armadillo' | 'sub_flame' | 'sub_eagle' | 'sub_spark';
-type IParts = 'leg' | 'head' | 'arm' | 'body';
-
-const weapons: IWeapons[] = [
-    'armadillo',
-    'boomer',
-    'chill',
-    'flame',
-    'octopus',
-    'spark',
-    'sting',
-    'eagle'
-];
-
-const hearts: IHearts[] = [
-    'heart_armadillo',
-    'heart_boomer',
-    'heart_chill',
-    'heart_flame',
-    'heart_octopus',
-    'heart_spark',
-    'heart_sting',
-    'heart_eagle'
-]
-
-const subs: ISubs[] = [
-    'sub_armadillo',
-    'sub_flame',
-    'sub_eagle',
-    'sub_spark'
-]
-
-const parts = [
-    'leg',
-    'head',
-    'arm',
-    'body'
-]
-
-
-const checkboxOptions = [
-    [...weapons],
-    [...hearts],
-    [...subs],
-    [...parts]
-];
-
-const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
-    const [state, setState] = useState<MMXState>(
-        initial || {
-            armadillo: false,
-            boomer: false,
-            chill: false,
-            flame: false,
-            octopus: false,
-            spark: false,
-            sting: false,
-            eagle: false,
-            heart_armadillo: false,
-            heart_boomer: false,
-            heart_chill: false,
-            heart_flame: false,
-            heart_octopus: false,
-            heart_spark: false,
-            heart_sting: false,
-            heart_eagle: false,
-            sub_armadillo: false,
-            sub_flame: false,
-            sub_eagle: false,
-            leg: false,
-            head: false,
-            arm: false,
-            body: false
-        }
-    );
-
+const Menu: React.FC<MenuProps> = ({ onChange, state }) => {
     const [hoverWeapon, setHoverWeapon] = useState<IWeapons | null>(null);
     const [hoverItem, setHoverItem] = useState<IHearts | ISubs | null>(null);
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        onChange(state);
+    const handleWeaponChange = (weapon: IWeapons, value: boolean) => {
+        const { weapons } = state;
+        onChange({ ...state, weapons: { ...weapons, [weapon]: value } });
     };
 
-    const handleChange = (option: string, value: boolean) => {
-        setState({ ...state, [option]: value });
+    const handleHeartChange = (heart: IHearts, value: boolean) => {
+        const { hearts } = state;
+        onChange({ ...state, hearts: { ...hearts, [heart]: value } });
+    };
 
-        onChange({ ...state, [option]: value });
+    const handleSubChange = (sub: ISubs, value: boolean) => {
+        const { subs } = state;
+        onChange({ ...state, subs: { ...subs, [sub]: value } });
+    };
+
+    const handlePartsChange = (part: string, value: boolean) => {
+        const { parts } = state;
+        onChange({ ...state, parts: { ...parts, [part]: value } });
     };
 
     const handleWeaponMouseEnter = (weapon: IWeapons) => {
@@ -128,39 +58,24 @@ const Menu: React.FC<MenuProps> = ({ onChange, initial }) => {
     return (
         <div className="Menu">
             <div className="Weapons">
-                {weapons.map((weapon) => (
-                    <Weapon key={weapon} id={weapon} onChange={handleChange} onMouseEnter={() => handleWeaponMouseEnter(weapon)} onMouseLeave={handleWeaponMouseLeave} />
+                {weapons.map((weapon: IWeapons) => (
+                    <Weapon key={weapon} id={weapon} onChange={handleWeaponChange} onMouseEnter={() => handleWeaponMouseEnter(weapon)} onMouseLeave={handleWeaponMouseLeave} active={state.weapons[weapon]} />
                 ))}
             </div>
             <div className="Subs">
-                {subs.map((sub) => (
-                    <SubTank key={sub} id={sub} onChange={handleChange} onMouseEnter={() => handleItemMouseEnter(sub)} onMouseLeave={handleItemMouseLeave} />
+                {subs.map((sub: ISubs) => (
+                    <SubTank key={sub} id={sub} onChange={handleSubChange} onMouseEnter={() => handleItemMouseEnter(sub)} onMouseLeave={handleItemMouseLeave} active={state.subs[sub]} />
                 ))}
             </div>
             <div className="Hearts">
                 {hearts.map((heart) => (
-                    <Heart key={heart} id={heart} onChange={handleChange} onMouseEnter={() => handleItemMouseEnter(heart)} onMouseLeave={handleItemMouseLeave} />
+                    <Heart key={heart} id={heart} onChange={handleHeartChange} onMouseEnter={() => handleItemMouseEnter(heart)} onMouseLeave={handleItemMouseLeave} active={state.hearts[heart]} />
                 ))}
             </div>
             <BossTitle id={hoverItem} />
-            <X weapon={hoverWeapon} head={state.head} arm={state.arm} body={state.body} leg={state.leg} />
-            <XLarge weapon={hoverWeapon} head={state.head} arm={state.arm} body={state.body} leg={state.leg} />
-            <PartsMenu onChange={handleChange} />
-            <form onSubmit={handleSubmit}>
-                {/* {checkboxOptions.map((option) => (
-                    <div className="checkbox" key={option}>
-                        <input
-                            type="checkbox"
-                            id={option}
-                            name={option}
-                            checked={state[option]}
-                            onChange={() => handleCheckboxChange(option)}
-                        />
-                        <label htmlFor={option}>{option}</label>
-                    </div>
-                ))}
-                <button type="submit">Submit</button> */}
-            </form>
+            <X weapon={hoverWeapon} parts={state.parts} />
+            <XLarge weapon={hoverWeapon} parts={state.parts} />
+            <PartsMenu onChange={handlePartsChange} parts={state.parts} />
         </div>
     );
 };
