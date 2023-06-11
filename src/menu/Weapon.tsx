@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent } from 'react';
 import { IWeapons } from '../common/types';
 
 interface MenuProps {
